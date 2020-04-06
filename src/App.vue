@@ -1,19 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    
+    <div class="nav-bar"></div>
+        <div class="cart">
+            <p>Panier({{ cart.length }})</p>
+            
+        </div>
+       <product :premium="premium" @add-to-cart="updateCart"></product>
+   </div>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import product from './components/product.vue'
 
 export default {
   name: 'App',
+     data: function () {
+  return {
+  premium: true,
+        cart: []  }
+},
+    methods: {
+        updateCart(id) {
+            this.cart.push(id)
+        }
+    },
   components: {
-    HelloWorld
-  }
-}
+    product
+  }}
 </script>
 
 <style>
@@ -23,6 +38,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+  .nav-bar {
+    background: linear-gradient(-90deg, rgb(66, 123, 146), rgb(114, 196, 243));
+    height: 60px;
+    margin-bottom: 15px;
+  }
 </style>
